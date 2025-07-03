@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('alias')->unique();
             $table->string('director');
+            $table->string('image')->nullable();
             $table->foreignId('release_year_id')
                   ->constrained('release_years')
                   ->cascadeOnDelete();                             
