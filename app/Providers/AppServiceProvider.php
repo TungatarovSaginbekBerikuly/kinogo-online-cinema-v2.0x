@@ -25,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('comments', Comment::all());
         View::share('categories', Category::all());
-        View::share('release_dates', ReleaseYear::all());
+        View::share('release_years', ReleaseYear::all());
     }
 }

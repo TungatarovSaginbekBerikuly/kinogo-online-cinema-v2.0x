@@ -28,10 +28,10 @@
             <span></span>
         </div>
         <ul data-selectbox="2" class="selectbox-body">
-            @foreach ($release_dates as $release_date)
+            @foreach ($release_years as $release_year)
                 <li>
-                    <a href="#" class="selectbox-link">
-                        {{ $release_date->year }}
+                    <a href="{{ route('showReleaseYear', $release_year->year) }}" class="selectbox-link">
+                        {{ $release_year->year }}
                     </a>
                 </li>
             @endforeach

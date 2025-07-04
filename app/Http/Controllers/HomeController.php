@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Film;
 use App\Models\Category;
 use App\Models\Slider;
+use App\Models\ReleaseYear;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,17 @@ class HomeController extends Controller
 
         return view('home.category.show', [
             'category' => $category,
+            'films' => $films
+        ]);
+    }
+
+    public function showReleaseYear(ReleaseYear $release_year)
+    {
+        $films = $release_year->films()->paginate(10);
+        $release_year = ReleaseYear::where('year', $release_year->year)->firstOrFail();
+
+        return view('home.release_year.show', [
+            'release_year' => $release_year,
             'films' => $films
         ]);
     }

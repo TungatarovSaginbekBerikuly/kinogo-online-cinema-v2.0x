@@ -1,13 +1,13 @@
 @extends('layouts.home_layout')
 
-@section('title', 'Категория - ' . $category->title)
+@section('title', 'Год выпуска - ' . $release_year->year)
 
 @section('content')
     <!-- Responses -->
     <div class="response__box">
         <div class="response__inner">
-            <h1 class="response__title">Категория: {{ $category->title }}</h1>
-            <p class="response__txt">Найдено {{ $category->films->count() }} фильмов.</p>
+            <h1 class="response__title">Год выпуска: {{ $release_year->year }}</h1>
+            <p class="response__txt">Найдено {{ $release_year->films->count() }} фильмов.</p>
         </div>
     </div>
 
@@ -31,7 +31,49 @@
             <!-- Movies -->
             <div class="content__movie">
                 <div class="content__movie-header">
-                    @include('partials.order-by')
+
+                    <div class="selectbox-wrap">
+                        <div class="selectbox">
+                            <p class="selectbox-desc">Сортировка по:</p>
+                            <div class="selectbox-btn" data-selectbox="1">
+                                Рекомендуемые
+                                <span></span>
+                            </div>
+                            <ul data-selectbox="1" class="selectbox-body">
+                                <li>
+                                    <a href="{{ route('home') }}" class="selectbox-link">Рекомендуемые</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="selectbox-link">Популярные</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="selectbox-link">По дате</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="selectbox-link">Топ - 100</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="selectbox">
+                            <p class="selectbox-desc">По году выпуска:</p>
+                            <div class="selectbox-btn" data-selectbox="2">
+                                {{ $release_year->year }}
+                                <span></span>
+                            </div>
+                            <ul data-selectbox="2" class="selectbox-body">
+                                @foreach ($release_years as $release_year)
+                                <li>
+                                    <a href="{{ route('showReleaseYear', $release_year->year) }}"
+                                        class="selectbox-link">
+                                        {{ $release_year->year }}
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
 
                 <!-- Movie Cards -->
@@ -49,7 +91,8 @@
                             <ul class="movie__card-categories">
                                 @foreach ($film->categories->take(2) as $category)
                                     <li>
-                                        <a href="{{ route('showCategory', $category->alias) }}" class="movie__card-category-link">
+                                        <a href="{{ route('showCategory', $category->alias) }}"
+                                            class="movie__card-category-link">
                                             {{ $category->title }}
                                         </a>
                                     </li>
