@@ -21,4 +21,15 @@ class HomeController extends Controller
             'sliders' => $sliders
         ]);
     }
+
+    public function showCategory(Category $category)
+    {
+        $films = $category->films()->paginate(10);
+        $category = Category::where('alias', $category->alias)->firstOrFail();
+
+        return view('home.category.show', [
+            'category' => $category,
+            'films' => $films
+        ]);
+    }
 }

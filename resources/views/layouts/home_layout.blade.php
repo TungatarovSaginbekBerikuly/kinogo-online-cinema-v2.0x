@@ -122,7 +122,7 @@
                     @foreach ($comments->take(2) as $comment)
                         <div class="last__comment">
                             <a href="#" class="last__comment-img">
-                                <img src="{{ $comment->film->image }}">
+                                <img src="{{ asset($comment->film->image) }}">
                             </a>
                             <div class="last__comment-navs">
                                 <div class="last__comment-info">

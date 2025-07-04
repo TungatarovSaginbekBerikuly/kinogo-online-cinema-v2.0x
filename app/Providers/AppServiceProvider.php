@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Comment;
+use App\Models\Category;
+use App\Models\ReleaseYear;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::share('comments', Comment::all());
+        View::share('categories', Category::all());
+        View::share('release_dates', ReleaseYear::all());
     }
 }
