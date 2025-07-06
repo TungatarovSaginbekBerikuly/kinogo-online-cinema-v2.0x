@@ -55,4 +55,14 @@ class HomeController extends Controller
             'recommendations' => $recommendations
         ]);
     }
+
+    public function contacts()
+    {
+        return view('home.contacts');
+    }
+
+    public function notFound()
+    {
+        return view('errors.404');
+    }
 }

@@ -9,11 +9,11 @@
             <div class="slider__item">
                 <img src="{{ $slider->image }}">
                 <div class="slider__components">
-                    <a href="#" class="slider__btn">
+                    <a href="{{ route('showFilm', $slider->film->alias) }}" class="slider__btn">
                         <i class="fa-solid fa-play"></i>
                     </a>
-                    <div href="#" class="slider__navs">
-                        <a href="#" class="slider__link">{{ $slider->film->title }}</a>
+                    <div class="slider__navs">
+                        <a href="{{ route('showFilm', $slider->film->alias) }}" class="slider__link">{{ $slider->film->title }}</a>
                     </div>
                 </div>
         </div>

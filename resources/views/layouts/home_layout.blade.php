@@ -84,7 +84,7 @@
                     <a href="#" class="mobile__menu-link">Помощь</a>
                 </li>
                 <li>
-                    <a href="#" class="mobile__menu-link">Контакты</a>
+                    <a href="{{ route('contacts') }}" class="mobile__menu-link">Контакты</a>
                 </li>
             </ul>
 
@@ -115,7 +115,7 @@
                             <a href="#" class="footer__menu-link">Помощь</a>
                         </li>
                         <li>
-                            <a href="#" class="footer__menu-link">Контакты</a>
+                            <a href="{{ route('contacts') }}" class="footer__menu-link">Контакты</a>
                         </li>
                     </ul>
                 </div>
