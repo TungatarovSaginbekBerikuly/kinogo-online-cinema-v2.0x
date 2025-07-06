@@ -53,6 +53,10 @@ class CadrSeeder extends Seeder
             ['image' => 'images/cadrs/10.1.jpeg', 'film_id' => 10],
             ['image' => 'images/cadrs/10.2.webp', 'film_id' => 10],
             ['image' => 'images/cadrs/10.3.jpg', 'film_id' => 10],
+
+            ['image' => 'images/cadrs/11.1.jpg', 'film_id' => 11],
+            ['image' => 'images/cadrs/11.2.jpg', 'film_id' => 11],
+            ['image' => 'images/cadrs/11.3.jpg', 'film_id' => 11],
         ]);
     }
 }

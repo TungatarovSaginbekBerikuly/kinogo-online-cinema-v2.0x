@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             FilmSeeder::class,
             FilmCategorySeeder::class,
             SliderSeeder::class,
-            CommentSeeder::class
+            CommentSeeder::class,
+            CadrSeeder::class
         ]);
     }
 }

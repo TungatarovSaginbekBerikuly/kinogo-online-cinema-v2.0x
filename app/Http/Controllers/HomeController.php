@@ -44,4 +44,15 @@ class HomeController extends Controller
             'films' => $films
         ]);
     }
+
+    public function showFilm(Film $film)
+    {
+        $recommendations = Film::where('is_recommended', true)->limit(6)->get();
+        $film = Film::where('alias', $film->alias)->firstOrFail();
+
+        return view('home.film.show', [
+            'film' => $film,
+            'recommendations' => $recommendations
+        ]);
+    }
 }

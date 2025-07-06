@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,16 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <!-- Header -->
-    <header class="header">    
+    <header class="header">
         <div class="container">
-            
+
             <div class="header__inner">
 
                 <!-- Burger && Logo -->
@@ -24,10 +28,10 @@
                     <div class="header__burger">
                         <span></span>
                     </div>
-                    
+
                     <!-- Logo -->
                     <a href="{{ route('home') }}" class="header__logo">Kinogo</a>
-                
+
                     <!-- Mobile Search Btn -->
                     <a href="" class="header__icon header__icon_mobile">
                         <i class="fa-solid fa-search"></i>
@@ -65,7 +69,7 @@
     <!-- Mobile Menu -->
     <div class="mobile__menu">
         <div class="mobile__menu-container">
-            
+
             <ul class="mobile__menu-list">
                 <li>
                     <a href="{{ route('home') }}" class="mobile__menu-link">Главная</a>
@@ -88,7 +92,7 @@
     </div>
 
     @yield('content')
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer__inner">
@@ -96,7 +100,7 @@
                 <div class="footer-item">
                     <!-- Footer Menu -->
                     <h1 class="footer__title">Основные разделы</h1>
-                    
+
                     <ul class="footer__menu">
                         <li>
                             <a href="{{ route('home') }}" class="footer__menu-link">Главная</a>
@@ -115,18 +119,19 @@
                         </li>
                     </ul>
                 </div>
-    
+
                 <!-- Footer Last Comments -->
                 <div class="last__comments">
                     <h1 class="footer__title">Последние коментарии</h1>
-                    @foreach ($comments->take(2) as $comment)
+                    @foreach ($comments->sortByDesc('created_at')->take(2) as $comment)
                         <div class="last__comment">
-                            <a href="#" class="last__comment-img">
+                            <a href="{{ route('showFilm', $comment->film->alias) }}" class="last__comment-img">
                                 <img src="{{ asset($comment->film->image) }}">
                             </a>
                             <div class="last__comment-navs">
                                 <div class="last__comment-info">
-                                    <a href="#" class="last__comment-title">{{ $comment->film->title }}</a>
+                                    <a href="{{ route('showFilm', $comment->film->alias) }}"
+                                        class="last__comment-title">{{ $comment->film->title }}</a>
                                     <div class="last__comment-time">{{ $comment->created_at }}</div>
                                 </div>
                                 <p class="last__comment-name">{{ $comment->user->name }}</p>
@@ -137,12 +142,12 @@
                         </div>
                     @endforeach
                 </div>
-                
+
                 <div class="footer-item">
                     <!-- Footer Contacts -->
                     <div class="footer__contacts">
                         <h1 class="footer__title">Следите за нами</h1>
-    
+
                         <ul class="footer__contact-list">
                             <li>
                                 <a href="#" class="footer__list-link">
@@ -188,9 +193,14 @@
     <script src="{{ asset('js/slick.min.js') }}"></script>
     <!-- Header Js -->
     <script src="{{ asset('js/header.js') }}"></script>
-    <!-- Slider Slick Js -->
+    <!-- Slider Js -->
     <script src="{{ asset('js/slider.js') }}"></script>
     <!-- Selectbox Js -->
     <script src="{{ asset('js/selectbox.js') }}"></script>
+    <!-- Cards JS -->
+    <script src="{{ asset('js/cards.js') }}"></script>
+    <!-- Product tabs -->
+    <script src="{{ asset('js/product-tabs.js') }}"></script>
 </body>
+
 </html>

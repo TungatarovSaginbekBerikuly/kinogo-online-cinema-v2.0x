@@ -47,11 +47,11 @@
                 <div class="content__movie-body">
                     @foreach ($films as $film)
                         <div class="movie__card">
-                            <a href="#" class="movie__card-img">
+                            <a href="{{ route('showFilm', $film->alias) }}" class="movie__card-img">
                                 <img src="{{ $film->image }}">
                             </a>
 
-                            <a href="#" class="movie__card-title">
+                            <a href="{{ route('showFilm', $film->alias) }}" class="movie__card-title">
                                 {{ $film->title }}
                             </a>
 

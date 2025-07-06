@@ -58,6 +58,10 @@ class FilmCategorySeeder extends Seeder
             ['film_id' => 10, 'category_id' => 2],
             ['film_id' => 10, 'category_id' => 6],
             ['film_id' => 10, 'category_id' => 17],
+
+            ['film_id' => 11, 'category_id' => 12],
+            ['film_id' => 11, 'category_id' => 17],
+            ['film_id' => 11, 'category_id' => 11],
         ]);
     }
 }

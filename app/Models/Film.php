@@ -23,4 +23,10 @@ class Film extends Model
     {
         return $this->belongsTo(ReleaseYear::class);
     }
+
+    public function cadrs(): HasMany
+    {
+        return $this->hasMany(Cadr::class);
+    }
+
 }
