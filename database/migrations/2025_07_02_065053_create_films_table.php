@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('alias')->unique();
             $table->string('director');
             $table->string('image')->nullable();
+            $table->string('banner')->nullable();
             $table->foreignId('release_year_id')
                   ->constrained('release_years')
                   ->cascadeOnDelete();                             
