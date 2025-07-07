@@ -39,8 +39,8 @@
                 </div>
 
                 <!-- Search Form -->
-                <form action="#" class="header__search">
-                    <input type="text" class="header__search-input" placeholder="Пираты Карибского моря 2">
+                <form class="header__search" action="{{ route('search') }}" method="GET">
+                    <input type="text" name="s" class="header__search-input" placeholder="Пираты Карибского моря 2">
                     <button class="header__search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
 

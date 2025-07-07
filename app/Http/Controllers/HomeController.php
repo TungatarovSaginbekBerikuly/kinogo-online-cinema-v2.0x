@@ -65,4 +65,16 @@ class HomeController extends Controller
     {
         return view('errors.404');
     }
+
+    public function search(Request $request)
+    {
+        $s = $request->s;
+        $films = Film::where('title', 'LIKE', "%$s%")
+                ->orderBy('title')->paginate(10);
+
+        return view('home.search', [
+            'films' => $films,
+            's' => $s
+        ]);
+    }
 }
