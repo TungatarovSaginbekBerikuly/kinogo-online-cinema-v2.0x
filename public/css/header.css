@@ -148,6 +148,12 @@
     height: 60px;
     border-radius: 60px;
 }
+.header-mobile-user img {
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    display: none;
+}
 
 /* Mobile Menu */
 .mobile__menu {
@@ -219,6 +225,10 @@
         width: 50px;
         height: 50px;
     }
+    .header-mobile-user img {
+        width: 50px;
+        height: 50px;
+    }
 }
 @media (max-width: 767px) {
     /* Header Inner */
@@ -235,10 +245,10 @@
     /* Header Burger */
     .header__burger::before,
     .header__burger::after {
-        /* background: #fff; */
+        background: #fff;
     }
     .header__burger span {
-        /* background: #fff; */
+        background: #fff;
     }
 
     /* Header Logo */
@@ -284,5 +294,10 @@
     }
     .mobile__menu-link {
         font-size: 16px;
+    }
+}
+@media (max-width: 360px) {
+    .header-mobile-user img {
+        display: block;
     }
 }

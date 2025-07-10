@@ -22,6 +22,8 @@
 @import url(contacts.css);
 /* SelectBox Css */
 @import url(selectbox.css);
+/* Auth Css */
+@import url(auth.css);
 
 html, body {
     width: 100%;

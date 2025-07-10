@@ -8,6 +8,7 @@
     background: #1A1D27;
     justify-content: center;
 }
+
 .auth__box {
     width: 500px;
     height: auto;
@@ -15,33 +16,39 @@
     text-align: center;
     font-family: 'Raleway';
 }
+
 .auth__title {
     margin-top: 0;
     font-size: 32px;
     text-align: center;
     margin-bottom: 30px;
 }
+
 .auth__form {
     display: flex;
     grid-gap: 10px;
     margin-bottom: 30px;
     flex-direction: column;
 }
+
 .auth__label {
     text-align: left;
     font-size: 18px;
     font-weight: 700;
 }
+
 .auth__input {
     border: none;
     padding: 15px 20px;
     font-size: 16px;
     color: #f3f3f3;
     border-radius: 2px;
-    font-family: 'Roboto';
+    font-family: 'Raleway';
+    font-weight: 600;
     background: #12151F;
 }
-.auth__box > .btn__primary {
+
+.auth__box>.btn__primary {
     padding: 15px;
     font-size: 18px;
     color: #f3f3f3;
@@ -49,14 +56,17 @@
     background: #2A7FD9;
     box-shadow: 0 4px 64px 4px #2a7fd931;
 }
-.auth__box > .btn__primary:hover {
+
+.auth__box>.btn__primary:hover {
     background: #2075CF;
 }
+
 .auth__link {
     font-size: 18px;
     color: #2A7FD9;
     text-align: center;
 }
+
 .auth__link:hover {
     color: #2075CF;
 }
@@ -64,11 +74,50 @@
 @media (max-width: 767px) {
     .auth__container {
         padding: 50px 20px;
-    }    
+    }
+
     .auth__box {
         width: 100%;
     }
+
     .auth__title {
         font-size: 24px;
-    }    
+    }
+}
+
+.auth__error {
+    color: #e3342f;
+    font-size: 14px;
+    margin: 0;
+    text-align: left;
+}
+
+.auth__input--error {
+    border-color: #e3342f;
+}
+
+.alert--success {
+    position: fixed;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #38c172;
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    font-family: 'Raleway';
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.alert__close {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
 }

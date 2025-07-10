@@ -3,6 +3,14 @@
 @section('title', 'Kinogo online cinema')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert--success">
+            <span>{{ session('success') }}</span>
+            <button type="button" class="alert__close" aria-label="Close"
+                onclick="this.parentElement.remove();">&times;</button>
+        </div>
+    @endif
+    
     <!-- Slider -->
     <div class="slider">
         @foreach ($sliders as $slider)
@@ -13,10 +21,11 @@
                         <i class="fa-solid fa-play"></i>
                     </a>
                     <div class="slider__navs">
-                        <a href="{{ route('showFilm', $slider->film->alias) }}" class="slider__link">{{ $slider->film->title }}</a>
+                        <a href="{{ route('showFilm', $slider->film->alias) }}"
+                            class="slider__link">{{ $slider->film->title }}</a>
                     </div>
                 </div>
-        </div>
+            </div>
         @endforeach
     </div>
 
@@ -58,7 +67,8 @@
                             <ul class="movie__card-categories">
                                 @foreach ($film->categories->take(2) as $category)
                                     <li>
-                                        <a href="{{ route('showCategory', $category->alias) }}" class="movie__card-category-link">
+                                        <a href="{{ route('showCategory', $category->alias) }}"
+                                            class="movie__card-category-link">
                                             {{ $category->title }}
                                         </a>
                                     </li>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -40,29 +40,36 @@
 
                 <!-- Search Form -->
                 <form class="header__search" action="{{ route('search') }}" method="GET">
-                    <input type="text" name="s" class="header__search-input" placeholder="Пираты Карибского моря 2">
+                    <input type="text" name="s" class="header__search-input"
+                        placeholder="Пираты Карибского моря 2">
                     <button class="header__search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
 
                 <!-- Icons && User -->
                 <div class="header__navs">
-                    <!-- Icons -->
-                    <div class="header__icons">
-                        <a href="" class="header__icon">
-                            <i class="fa-solid fa-download"></i>
-                        </a>
-                        <a href="" class="header__icon">
-                            <i class="fa-solid fa-bell"></i>
-                        </a>
-                    </div>
+                    @auth
+                        <!-- Icons -->
+                        <div class="header__icons">
+                            <a href="" class="header__icon">
+                                <i class="fa-solid fa-download"></i>
+                            </a>
+                            <a href="" class="header__icon">
+                                <i class="fa-solid fa-bell"></i>
+                            </a>
+                        </div>
 
-                    <!-- User -->
-                    <a href="#" class="header__user">
-                        <img src="{{ asset('images/default-user.png') }}" alt="">
-                    </a>
+                        <!-- User -->
+                        <a href="{{ route('logout') }}" class="header__user">
+                            <img src="{{ asset('images/default-user.png') }}" alt="">
+                        </a>
+                    @else
+                        <!-- User -->
+                        <a href="{{ route('login') }}" class="header__user">
+                            <img src="{{ asset('images/default-user.png') }}" alt="">
+                        </a>
+                    @endauth
                 </div>
             </div>
-
         </div>
     </header>
 
@@ -86,6 +93,19 @@
                 <li>
                     <a href="{{ route('contacts') }}" class="mobile__menu-link">Контакты</a>
                 </li>
+                @auth
+                    <li>
+                        <a href="#" class="mobile__menu-link">Профиль</a>
+                    </li>
+                @else
+                <br>
+                <li>
+                    <a href="{{ route('login') }}" class="mobile__menu-link">Вход</a>
+                </li> 
+                <li>
+                    <a href="{{ route('register') }}" class="mobile__menu-link">Регистрация</a>
+                </li> 
+                @endauth
             </ul>
 
         </div>
