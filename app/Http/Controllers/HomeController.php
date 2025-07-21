@@ -7,6 +7,8 @@ use App\Models\Film;
 use App\Models\Category;
 use App\Models\Slider;
 use App\Models\ReleaseYear;
+use App\Models\User;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {

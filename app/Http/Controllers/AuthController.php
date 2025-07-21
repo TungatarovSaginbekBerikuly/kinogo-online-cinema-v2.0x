@@ -26,30 +26,56 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('home')->withSuccess('Добро пожаловать на Kinogo!');
+            return redirect()->route('home')->withSuccess('Вы успешно вошли в аккаунт. Добро пожаловать на Kinogo!');
         }
 
         return back()->withErrors([
-            'email' => 'Предоставленные учетные данные не соответствуют нашим записям.',
+            'email' => 'Неверный email или пароль.',
         ])->onlyInput('email');
     }
 
     public function registerPost(Request $request) 
     {
-        $validation = $request->validate([
+        $validated = $request->validate([
             'name' => ['required', 'max:55', 'min:2'],
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'min:6'],
         ]);
-        User::create($validation);
+        User::create($validated);
 
-        return redirect()->route('login')->withSuccess('Пользователь зарегистрирован. Войдите в аккаунт.');
+        return redirect()->route('login')->withSuccess('Регистрация прошла успешно. Войдите в свой аккаунт.');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success', 'Вы успешно вышли из аккаунта.');
     }
+
+    public function profile()
+    {
+        $user = Auth::user();
+        return view('home.user-profile', compact('user'));
+    }
+
+    public function updateImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        // Сохраняем в storage/app/public/avatars
+        $path = $request->file('image')->store('avatars', 'public');
+
+        $user->image = $path;
+        $user->save();
+
+        return back()->with('success', 'Изображение успешно обновлено.');
+    }
+
 }

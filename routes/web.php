@@ -11,12 +11,22 @@ Route::get('/film/{film:alias}', [HomeController::class, 'showFilm'])->name('sho
 Route::get('/contacts', [HomeController::class, 'contacts'])->name('contacts');
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'loginPost'])->name('loginPost');
+// Группа маршрутов только для гостей (неавторизованных)
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'loginPost'])->name('loginPost');
 
-Route::get('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/register', [AuthController::class, 'registerPost'])->name('registerPost');
+    Route::get('/register', [AuthController::class, 'register'])->name('register');
+    Route::post('/register', [AuthController::class, 'registerPost'])->name('registerPost');
+});
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+// Группа маршрутов только для авторизованных
+Route::middleware('auth')->group(function () {
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::any('{catchall}', [HomeController::class, 'notFound'])->where('catchall', '.*');
+    Route::get('/profile', [AuthController::class, 'profile'])->name('user-profile');
+    Route::post('/profile/update-image', [AuthController::class, 'updateImage'])->name('update-image');
+});
+
+
+Route::fallback([HomeController::class, 'notFound']);

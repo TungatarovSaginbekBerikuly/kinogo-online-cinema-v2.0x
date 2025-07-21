@@ -59,8 +59,12 @@
                         </div>
 
                         <!-- User -->
-                        <a href="{{ route('logout') }}" class="header__user">
-                            <img src="{{ asset('images/default-user.png') }}" alt="">
+                        <a href="{{ route('user-profile') }}" class="header__user">
+                            @if(Auth::user()->image)
+                                <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="Аватар">
+                            @else
+                                <img src="{{ asset('images/default-user.png') }}" alt="Аватар по умолчанию">
+                            @endif
                         </a>
                     @else
                         <!-- User -->
@@ -95,7 +99,7 @@
                 </li>
                 @auth
                     <li>
-                        <a href="#" class="mobile__menu-link">Профиль</a>
+                        <a href="{{ route('user-profile') }}" class="mobile__menu-link">Мой профиль</a>
                     </li>
                 @else
                 <br>
