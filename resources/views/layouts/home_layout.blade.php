@@ -147,7 +147,7 @@
                 <!-- Footer Last Comments -->
                 <div class="last__comments">
                     <h1 class="footer__title">Последние коментарии</h1>
-                    @foreach ($comments->sortByDesc('created_at')->take(2) as $comment)
+                    @foreach ($footerComments->sortByDesc('created_at')->take(2) as $comment)
                         <div class="last__comment">
                             <a href="{{ route('showFilm', $comment->film->alias) }}" class="last__comment-img">
                                 <img src="{{ asset($comment->film->image) }}">
@@ -156,7 +156,7 @@
                                 <div class="last__comment-info">
                                     <a href="{{ route('showFilm', $comment->film->alias) }}"
                                         class="last__comment-title">{{ $comment->film->title }}</a>
-                                    <div class="last__comment-time">{{ $comment->created_at }}</div>
+                                        <div class="last__comment-time">{{ Carbon\Carbon::parse($comment->created_at)->format('H:i') }}</div>
                                 </div>
                                 <p class="last__comment-name">{{ $comment->user->name }}</p>
                                 <p class="last__comment-txt">

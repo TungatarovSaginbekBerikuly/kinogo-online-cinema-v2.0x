@@ -119,46 +119,48 @@
                             <h2 class="product-secondary-title">Рекомендуем посмотреть</h2>
                             <div class="product-tabs-recommendation">
                                 @foreach ($recommendations->take(6) as $recommendation)
-                                <div class="movie__card">
-                                    <a href="{{ route('showFilm', $recommendation->alias) }}" class="movie__card-img">
-                                        <img src="{{ asset($recommendation->image) }}">
-                                    </a>
+                                    <div class="movie__card">
+                                        <a href="{{ route('showFilm', $recommendation->alias) }}" class="movie__card-img">
+                                            <img src="{{ asset($recommendation->image) }}">
+                                        </a>
 
-                                    <a href="{{ route('showFilm', $recommendation->alias) }}" class="movie__card-title">{{ $recommendation->title }}</a>
+                                        <a href="{{ route('showFilm', $recommendation->alias) }}"
+                                            class="movie__card-title">{{ $recommendation->title }}</a>
 
-                                    <ul class="movie__card-categories">
-                                        @foreach ($recommendation->categories->take(2) as $category)
+                                        <ul class="movie__card-categories">
+                                            @foreach ($recommendation->categories->take(2) as $category)
+                                                <li>
+                                                    <a href="{{ route('showCategory', $category->alias) }}"
+                                                        class="movie__card-category-link">
+                                                        {{ $category->title }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+
+                                        <ul class="movie__card-rating">
                                             <li>
-                                                <a href="{{ route('showCategory', $category->alias) }}" class="movie__card-category-link">
-                                                    {{ $category->title }}
-                                                </a>
+                                                <i class="fa-solid fa-star"></i>
                                             </li>
-                                        @endforeach
-                                    </ul>
+                                            <li>
+                                                <i class="fa-solid fa-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa-solid fa-star dis-star"></i>
+                                            </li>
+                                        </ul>
 
-                                    <ul class="movie__card-rating">
-                                        <li>
-                                            <i class="fa-solid fa-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa-solid fa-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa-solid fa-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa-solid fa-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa-solid fa-star dis-star"></i>
-                                        </li>
-                                    </ul>
-
-                                    <div class="movie__card-navs">
-                                        <div class="movie__card-btn">HD</div>
-                                        <div class="movie__card-btn">Дубляж</div>
+                                        <div class="movie__card-navs">
+                                            <div class="movie__card-btn">HD</div>
+                                            <div class="movie__card-btn">Дубляж</div>
+                                        </div>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -207,12 +209,14 @@
                                 <img src="{{ asset($recommendation->image) }}">
                             </a>
 
-                            <a href="{{ route('showFilm', $recommendation->alias) }}" class="movie__card-title">Человек Паук Вдали От ...</a>
+                            <a href="{{ route('showFilm', $recommendation->alias) }}" class="movie__card-title">Человек
+                                Паук Вдали От ...</a>
 
                             <ul class="movie__card-categories">
                                 @foreach ($recommendation->categories->take(2) as $category)
                                     <li>
-                                        <a href="{{ route('showCategory', $category->alias) }}" class="movie__card-category-link">
+                                        <a href="{{ route('showCategory', $category->alias) }}"
+                                            class="movie__card-category-link">
                                             {{ $category->title }}
                                         </a>
                                     </li>
@@ -255,82 +259,74 @@
                     </div>
                 </div>
 
-                <!-- Add comment -->
-                <form action="#" class="add__comment">
-                    <textarea type="text" class="add__comment-input"></textarea>
-                    <button class="btn__primary btn__bg-blue">Отправить</button>
-                </form>
+                @auth
+                    <form action="{{ route('comments.store') }}" method="POST" class="add__comment">
+                        @csrf
+
+                        <input type="hidden" name="film_id" value="{{ $film->id }}">
+
+                        <textarea name="message" class="add__comment-input">{{ old('message') }}</textarea>
+
+                        {{-- Показ ошибки под полем --}}
+                        @error('message')
+                            <div class="txt-primary" style="color:red;">{{ $message }}</div>
+                        @enderror
+
+                        <button type="submit" class="btn__primary btn__bg-blue">Отправить</button>
+                    </form>
+                @else
+                    <p class="txt-primary">Для добавления комментария зарегистрируйтесь на сайте.</p>
+                @endauth
+
 
                 <!-- All comments -->
                 <div class="comments">
-                    <div class="comment-item">
-                        <div class="comment__head">
-                            <div class="comment__img"></div>
-                            <div class="comment__status">
-                                <button class="comment__dislikes"><span class="minus__icon">-</span>2</button>
-                                <button class="comment__likes"><span class="plus__icon">+</span>8</button>
-                            </div>
-                        </div>
-                        <div class="comment__body">
-                            <div class="comment__body-nav">
-                                <p class="comment__user-name">Elena</p>
-                                <div class="comment__user-date">5 октября 2024 / 20:47</div>
-                            </div>
-                            <p class="comment__txt">
-                                Смотрели эту часть в кино. Я не чуть не огорчена от предыдущих не
-                                отстает! Всего в меру. Дети (три и пять лет) посмотрели полностью
-                                без отрыва. В мультике очаровательные свинки обворожительный
-                                брат Грю, Мамочка Люси!
-                            </p>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment__head">
-                            <div class="comment__img"></div>
-                            <div class="comment__status">
-                                <button class="comment__dislikes"><span class="minus__icon">-</span>2</button>
-                                <button class="comment__likes"><span class="plus__icon">+</span>8</button>
-                            </div>
-                        </div>
-                        <div class="comment__body">
-                            <div class="comment__body-nav">
-                                <p class="comment__user-name">Elena</p>
-                                <div class="comment__user-date">5 октября 2024 / 20:47</div>
-                            </div>
-                            <p class="comment__txt">
-                                Смотрели эту часть в кино. Я не чуть не огорчена от предыдущих не
-                                отстает! Всего в меру. Дети (три и пять лет) посмотрели полностью
-                                без отрыва. В мультике очаровательные свинки обворожительный
-                                брат Грю, Мамочка Люси!
+                    @foreach ($comments as $comment)
+                        @php
+                            $userVote = $comment->userVote($userId)->first();
+                            $isLiked = $userVote && $userVote->is_like;
+                            $isDisliked = $userVote && !$userVote->is_like;
+                        @endphp
 
-                                Смотрели эту часть в кино. Я не чуть не огорчена от предыдущих не
-                                отстает! Всего в меру. Дети (три и пять лет) посмотрели полностью
-                                без отрыва. В мультике очаровательные свинки обворожительный
-                                брат Грю, Мамочка Люси!
-                            </p>
-                        </div>
-                    </div>
-                    <div class="comment-item">
-                        <div class="comment__head">
-                            <div class="comment__img"></div>
-                            <div class="comment__status">
-                                <button class="comment__dislikes"><span class="minus__icon">-</span>2</button>
-                                <button class="comment__likes"><span class="plus__icon">+</span>8</button>
+                        <div class="comment-item">
+                            <div class="comment__head">
+                                @if ($comment->user->image)
+                                    <div class="comment__img">
+                                        <img src="{{ asset('storage/' . $comment->user->image) }}" alt="Аватар"
+                                            style="height: 75px">
+                                    </div>
+                                @else
+                                    <div class="comment__img"></div>
+                                @endif
+
+                                <div class="comment__status">
+                                    <form method="POST" action="{{ route('comments.like', $comment->id) }}">
+                                        @csrf
+                                        <button class="comment__likes {{ $isLiked ? 'active' : '' }}">
+                                            <span class="plus__icon">+</span>{{ $comment->likes->count() }}
+                                        </button>
+                                    </form>
+
+                                    <form method="POST" action="{{ route('comments.dislike', $comment->id) }}">
+                                        @csrf
+                                        <button class="comment__dislikes {{ $isDisliked ? 'active' : '' }}">
+                                            <span class="minus__icon">-</span>{{ $comment->dislikes->count() }}
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="comment__body">
+                                <div class="comment__body-nav">
+                                    <p class="comment__user-name">{{ $comment->user->name }}</p>
+                                    <div class="comment__user-date">
+                                        {{ \Carbon\Carbon::parse($comment->created_at)->format('d.m.Y') }}
+                                    </div>
+                                </div>
+                                <p class="comment__txt">{{ $comment->message }}</p>
                             </div>
                         </div>
-                        <div class="comment__body">
-                            <div class="comment__body-nav">
-                                <p class="comment__user-name">Elena</p>
-                                <div class="comment__user-date">5 октября 2024 / 20:47</div>
-                            </div>
-                            <p class="comment__txt">
-                                Смотрели эту часть в кино. Я не чуть не огорчена от предыдущих не
-                                отстает! Всего в меру. Дети (три и пять лет) посмотрели полностью
-                                без отрыва. В мультике очаровательные свинки обворожительный
-                                брат Грю, Мамочка Люси!
-                            </p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

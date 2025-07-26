@@ -198,3 +198,10 @@ body {
         font-size: 12px;
     }
 }
+
+.txt-primary {
+    color: orange;
+    font-family: 'Raleway';
+    font-size: 18px;
+    font-weight: 500;
+}

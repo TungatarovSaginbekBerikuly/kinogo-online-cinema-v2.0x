@@ -51,10 +51,14 @@ class HomeController extends Controller
     {
         $recommendations = Film::where('is_recommended', true)->limit(6)->get();
         $film = Film::where('alias', $film->alias)->firstOrFail();
+        $comments = $film->comments()->with('user')->latest()->get();
+        $userId = auth()->id();
 
         return view('home.film.show', [
             'film' => $film,
-            'recommendations' => $recommendations
+            'recommendations' => $recommendations,
+            'comments' => $comments,
+            'userId' => $userId
         ]);
     }
 

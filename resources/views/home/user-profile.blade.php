@@ -45,7 +45,7 @@
                         <div class="form__group-input">{{ $user->created_at }}</div>
                     </div>
                     <div class="form__group">
-                        <a href="" class="btn__danger">Выйти из аккаунта</a>
+                        <a href="{{ route('logout') }}" class="btn__danger">Выйти из аккаунта</a>
                     </div>
                 </div>
             </div>

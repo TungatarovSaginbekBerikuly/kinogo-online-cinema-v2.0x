@@ -23,8 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share('comments', Comment::all());
         View::share('categories', Category::all());
         View::share('release_years', ReleaseYear::all());
+        View::composer('layouts.home_layout', function ($view) {
+            $view->with('footerComments', Comment::with('film', 'user')->latest()->take(2)->get());
+        });
     }
 }

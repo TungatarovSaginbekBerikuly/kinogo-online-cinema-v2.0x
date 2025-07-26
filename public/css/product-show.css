@@ -331,6 +331,9 @@ body.active {
     grid-gap: 20px;
     /* background: red; */
 }
+.comment__body {
+    width: 100%;
+}
 .comment__img {
     width: 75px;
     height: 75px;
@@ -771,4 +774,9 @@ body.active {
         left: -10px;
         box-shadow: 0 0 62px 40px #12151F inset;
     }   
+}
+
+button.active {
+    background-color: #252525;
+    color: white;
 }
