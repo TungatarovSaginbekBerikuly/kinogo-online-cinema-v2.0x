@@ -86,13 +86,13 @@
                     <a href="{{ route('home') }}" class="mobile__menu-link">Главная</a>
                 </li>
                 <li>
-                    <a href="#" class="mobile__menu-link">Новинки</a>
+                    <a href="{{ route('soon') }}" class="mobile__menu-link">Новинки</a>
                 </li>
                 <li>
-                    <a href="#" class="mobile__menu-link">Стол заказов</a>
+                    <a href="{{ route('soon') }}" class="mobile__menu-link">Стол заказов</a>
                 </li>
                 <li>
-                    <a href="#" class="mobile__menu-link">Помощь</a>
+                    <a href="{{ route('soon') }}" class="mobile__menu-link">Помощь</a>
                 </li>
                 <li>
                     <a href="{{ route('contacts') }}" class="mobile__menu-link">Контакты</a>
@@ -130,13 +130,13 @@
                             <a href="{{ route('home') }}" class="footer__menu-link">Главная</a>
                         </li>
                         <li>
-                            <a href="#" class="footer__menu-link">Новинки</a>
+                            <a href="{{ route('soon') }}" class="footer__menu-link">Новинки</a>
                         </li>
                         <li>
-                            <a href="#" class="footer__menu-link">Стол заказов</a>
+                            <a href="{{ route('soon') }}" class="footer__menu-link">Стол заказов</a>
                         </li>
                         <li>
-                            <a href="#" class="footer__menu-link">Помощь</a>
+                            <a href="{{ route('soon') }}" class="footer__menu-link">Помощь</a>
                         </li>
                         <li>
                             <a href="{{ route('contacts') }}" class="footer__menu-link">Контакты</a>

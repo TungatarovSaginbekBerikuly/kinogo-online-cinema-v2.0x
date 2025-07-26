@@ -36,5 +36,6 @@ Route::middleware('auth')->group(function () {
 
 });
 
+Route::view('/soon', 'soon')->name('soon');
 
 Route::fallback([HomeController::class, 'notFound']);
