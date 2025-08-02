@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/category/{category:alias}', [HomeController::class, 'showCategory'])->name('showCategory');
@@ -37,5 +38,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::view('/soon', 'soon')->name('soon');
+
+Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+});
 
 Route::fallback([HomeController::class, 'notFound']);
