@@ -1,4 +1,4 @@
-<p align="center"><img src="[https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg](https://avatars.mds.yandex.net/i?id=de6ad40dac29d00e127f4a6aba99a6bdc05e5824-5165467-images-thumbs&n=13)" width="400" alt="Kinogo Logo"></p>
+<p align="center"><img src="https://avatars.mds.yandex.net/i?id=de6ad40dac29d00e127f4a6aba99a6bdc05e5824-5165467-images-thumbs&n=13" width="400" alt="Kinogo Logo"></p>
 
 ## Коротко о проекте
 Kinogo — онлайн кинотеатр мой первый крупный проект, который я реализовал полностью с нуля до полноценного веб-приложения с админ-панелью и с базой данных.
